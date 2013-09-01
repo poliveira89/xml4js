@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>xml4js - JavaScript XML Writer Library</title>
+    <!-- Load Inks' Files -->
+    <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/2.1.1/css/ink-min.css">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="http://cdn.ink.sapo.pt/2.1.1/js/html5shiv.js"></script>
+    <script type="text/javascript" src="http://cdn.ink.sapo.pt/2.1.1/js/html5shiv-printshiv.js"></script>
+    <![endif]-->
+    <!--[if lte IE 7 ]>
+    <  link rel="stylesheet" href="http://cdn.ink.sapo.pt/2.1.1/css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <![endif]-->
+    <script type="text/javascript" src="http://cdn.ink.sapo.pt/2.1.1/js/ink.min.js"></script>
+    <!-- End of Inks' Files -->
+
+    <!-- Start xml4js files/scripts-->
+    <script type="text/javascript" src="xml4js.js"></script>
+    <script>
+        function exec() {
+            var code = document.getElementById("code").value;
+            eval(code);
+            document.getElementById("show").innerHTML = doc;
+        }
+    </script>
+    <!-- End of xml4js files/scripts-->
+    <style type="text/css">
+        h1 {
+            margin-top: 26px;
+        }
+        #code, #show {
+            padding: 4px;
+            width: 100%;
+            height: 550px;
+        }
+        #note {
+            font-size: 80%;
+        }
+        footer {
+            padding: 12px 10px;
+            font-size: 85%;
+        }
+    </style>
+</head>
+<body>
+    <div id="main" class="ink-grid">
+        <h1><i class="icon-code"></i> xml4js</h1>
+        <h4>JavaScript XML Writer Library</h4>
+        <p>The aim of the project is to create a lightweight library that enables the user to create XML documents with a low level complexity.</p>
+        <div class="column-group gutters">
+            <div id="left" class="large-50">
+                <textarea id="code">
+var xml = new xml4js({encoding: "ISO-8859-1"});
+xml.write("bookstore", function() {
+    xml.write("book");
+    xml.write("book", {category: "thriller"});
+    xml.write("book", "someValue");
+    xml.write("book", {category: "cooking"}, function() {
+        xml.write("title", {lang: "en"}, "Every Italian");
+        xml.write("author",  "Giada de Laurentilis");
+        xml.write("year", "2005");
+    });
+    xml.write("book", {category: "children"}, function() {
+        xml.write("title", {lang: "en"}, "Harry Potter");
+        xml.write("author",  "J. K. Rowling");
+        xml.write("year", "2005");
+    });
+    xml.write("book", function() {
+        xml.write("title", "Fear");
+        xml.write("author", "Jeff Abbott");
+        xml.write("year", "2006");
+    });
+    xml.write("data", {elem: "cdata"}, function() {
+        xml.write("cdata", "getAllBooks()");
+    });
+});
+var doc = xml.toString();
+console.log(doc);
+                </textarea>
+            </div>
+            <div id="right" class="large-50">
+                <textarea id="show" readOnly="true"></textarea>
+            </div>
+        </div>
+        <div class="column-group">
+            <div class="large-100 push-center content-center">
+                <p id="note"><b>NOTE: </b>If you execute the demo you can see sample of XML document on you browser console.</p>
+                <br/>
+            </div>
+        </div>
+        <div class="column-group">
+            <div class="large-50 push-center content-center">
+                <button class="ink-button green large" onclick="exec();">Demo</button>
+            </div>
+        </div>
+        <footer>
+            <p>Copyright © 2013</p>
+            <p>Developed by <a href="http://about.me/pnascimento">Paulo Oliveira</a></p>
+        </footer>
+    </div>
+</body>
+</html>
