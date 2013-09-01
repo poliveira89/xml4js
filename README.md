@@ -53,6 +53,9 @@ xml.write("cdata", "getAllMovies();");
 To print/extract XML document, at any moment, invoke `toString()` method.
 
 ### Demo
+
+[Try Online](http://poliveira89.github.io/xml4js/)
+
 Example:
 ```javascript
 var xml = new xml4js({encoding: "ISO-8859-1"});
